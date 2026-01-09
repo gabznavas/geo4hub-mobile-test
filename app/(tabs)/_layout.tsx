@@ -30,7 +30,7 @@ export default function TabLayout() {
         }}
       />
       <Tabs.Screen
-        name="projetos"
+        name="projects"
         options={{
           title: 'Projetos',
           tabBarIcon: ({ color }) => <TabBarIcon name="folder-open" color={color} />,
