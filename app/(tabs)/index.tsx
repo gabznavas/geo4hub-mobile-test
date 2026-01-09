@@ -1,19 +1,17 @@
-import { Alert, Pressable, StyleSheet } from 'react-native';
-
 import FontAwesome from '@expo/vector-icons/FontAwesome';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { router } from 'expo-router';
-import { Text, View } from 'react-native';
+import { Alert, Pressable, StyleSheet, Text, View } from 'react-native';
 
 export default function TabOneScreen() {
   const handleLogout = async () => {
-    Alert.alert('Logout', 'Tem certeza que deseja sair?', [
-      { text: 'Cancelar', style: 'cancel' },
-      { text: 'Sair', onPress: async () => {
-        await AsyncStorage.removeItem('jwt_data');
-        router.replace('/');
-      }},
-    ]);
+    try {
+      await AsyncStorage.removeItem('jwt_data');
+      router.replace('/');
+    } catch (error) {
+      Alert.alert('Erro', 'Erro ao fazer logout');
+      console.error('Erro ao fazer logout:', error);
+    }
   };
 
   return (
