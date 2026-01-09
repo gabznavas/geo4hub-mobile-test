@@ -26,7 +26,7 @@ export default function Index() {
     const checkLogin = async () => {
       const jwt_data = await AsyncStorage.getItem('jwt_data');
       if (jwt_data) {
-        router.push('/(tabs)');
+        router.replace('/(drawer)/(tabs)' as any);
       }
     };
     checkLogin();
@@ -37,7 +37,7 @@ export default function Index() {
     setIsLoading(true);
     try {
       await login(email, password);
-      router.push('/(tabs)');
+      router.replace('/(drawer)/(tabs)' as any);
     } catch (error) {
       Alert.alert('Erro', 'Falha ao fazer login');
     } finally {
